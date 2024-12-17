@@ -1,0 +1,14 @@
+total 44
+8145616 -rw-rw-r--  1 student student    7 Dec 16 10:06 .python-version
+8131103 -rwxrwxr-x  1 student student  660 Dec 16 10:11 manage.py
+8128243 -rw-r--r--  1 student student    0 Dec 16 10:26 db.sqlite3
+8131671 drwxrwxr-x  4 student student 4096 Dec 16 10:29 pages
+8131756 -rw-rw-r--  1 student student 3573 Dec 16 10:45 .gitignore
+8131250 drwxrwxr-x  2 student student 4096 Dec 16 11:16 .vscode
+8160460 drwxrwxr-x  4 student student 4096 Dec 17 10:21 bcre
+8537166 drwxrwxr-x  7 student student 4096 Dec 17 11:14 static
+8132323 drwxrwxr-x  4 student student 4096 Dec 17 12:14 templates
+8131726 drwxrwxr-x  8 student student 4096 Dec 17 14:10 .git
+8127312 drwxr-x--- 25 student student 4096 Dec 17 14:13 ..
+8160662 -rw-rw-r--  1 student student    0 Dec 17 14:13 ls.txt
+8160392 drwxrwxr-x  8 student student 4096 Dec 17 14:13 .
