@@ -12,8 +12,8 @@
           Consectetur, id commodi!
         </p>
         <div class="search">
-        {% comment %} fix .html later {% endcomment %}
-          <form action="search.html">
+          <form action={% url 'search' %} method="GET">
+            {% comment %} {% csrf_token %} {% endcomment %}
             <!-- Form Row 1 -->
             <div class="form-row">
               <div class="col-md-4 mb-3">
@@ -27,12 +27,12 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label class="sr-only">street</label>
+                <label class="sr-only">Title</label>
                 <input
                   type="text"
-                  name="street"
+                  name="title"
                   class="form-control"
-                  placeholder="Street"
+                  placeholder="Title"
                 />
               </div>
 
@@ -42,24 +42,9 @@
                   <option selected="true" disabled="disabled">
                     District (All)
                   </option>
-                  <option value="IL">Islands</option>
-                  <option value="KT">Kwai Tsing</option>
-                  <option value="NR">North</option>
-                  <option value="SK">Sai Kung</option>
-                  <option value="ST">Sha Tin</option>
-                  <option value="TP">Tai Po</option>
-                  <option value="TW">Tsuen Wan</option>
-                  <option value="TM">Tuen Mun</option>
-                  <option value="YL">Yuen Long</option>
-                  <option value="KC">Kowloon City</option>
-                  <option value="KW">Kwun Tong</option>
-                  <option value="SS">Sham Shui Po</option>
-                  <option value="WT">Wong Tai Sin</option>
-                  <option value="YM">Yau Tsim Mong</option>
-                  <option value="CW">Central & Western</option>
-                  <option value="ER">Eastern</option>
-                  <option value="SR">Southern</option>
-                  <option value="WC">Wan Chai</option>
+                  {% for key,value in district_choices.items %}
+                  <option value={{key}}>{{value}}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -71,16 +56,9 @@
                   <option selected="true" disabled="disabled">
                     Bedrooms (All)
                   </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                  {% for key,value in bedroom_choices.items %}
+                  <option value={{key}}>{{value}}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="col-md-6 mb-3">
@@ -88,16 +66,9 @@
                   <option selected="true" disabled="disabled">
                     Max Price (Any)
                   </option>
-                  <option value="1000000">$1,000,000</option>
-                  <option value="2000000">$2,000,000</option>
-                  <option value="3000000">$3,000,000</option>
-                  <option value="4000000">$4,000,000</option>
-                  <option value="5000000">$5,000,000</option>
-                  <option value="6000000">$6,000,000</option>
-                  <option value="7000000">$7,000,000</option>
-                  <option value="8000000">$8,000,000</option>
-                  <option value="9000000">$9,000,000</option>
-                  <option value="10000000">$10M+</option>
+                  {% for key,value in price_choices.items %}
+                  <option value={{key}}>{{value}}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -129,9 +100,9 @@
           </div>
           <div class="card-body">
             <div class="listing-heading text-center">
-              <h4 class="text-primary">{{listing.title}}</h4>
+              <h4 class="text-primary">{{listing.title | title}}</h4>
               <p>
-                <i class="fas fa-map-marker text-secondary"></i> {{listing.district}}
+                <i class="fas fa-map-marker text-secondary"></i> {{listing.get_district_display}}
               </p>
             </div>
             <hr />
@@ -149,13 +120,12 @@
             </div>
             <hr />
             <div class="row py-2 text-secondary">
-              <div class="col-6"><i class="fas fa-user"></i> {{listing.realtor}}</div>
+              <div class="col-6"><i class="fas fa-user"></i> {{listing.realtor.name}}</div>
             </div>
             <div class="row text-secondary pb-2">
               <div class="col-6"><i class="fas fa-clock"></i> {{listing.list_date | timesince}}</div>
             </div>
             <hr />
-            {% comment %} fix .html later {% endcomment %}
             <a href={% url "listing" listing.id %} class="btn btn-primary btn-block"
               >More Info</a
             >
@@ -164,10 +134,10 @@
       </div>
       {% endfor %}
       {% else %}
-       <div class= "col-md-12">
+      <div class= "col-md-12">
         <p> No listing Available
         </p>
-        </div>
+      </div>
       {% endif %}
     </div>
   </div>
