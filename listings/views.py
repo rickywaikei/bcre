@@ -33,19 +33,24 @@ def search(request):
         if district:
             if district != '_':
                 queryset_list = queryset_list.filter(district__icontains = district)
-    if 'price' in request.GET:
-        price = request.GET['price']
-        if price:
-            queryset_list = queryset_list.filter(price__lte = price)    
     if 'bedrooms' in request.GET:
         bedrooms = request.GET['bedrooms']
         if bedrooms:
-            queryset_list = queryset_list.filter(bedrooms__lte = bedrooms)
+            if bedrooms != '_':
+                queryset_list = queryset_list.filter(bedrooms__exact = bedrooms)
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            if price != '_':
+                queryset_list = queryset_list.filter(price__lte = price)    
+    paginator = Paginator(queryset_list,3)
+    page = request.GET.get("page")
+    paged_listings = paginator.get_page(page)
     context = {
         'price_choices': price_choices,
         'bedroom_choices': bedroom_choices,
         'district_choices': district_choices,
-        'listings': queryset_list,
+        'listings': paged_listings,
         'values': request.GET
     }
     return render(request,'listings/search.html', context)

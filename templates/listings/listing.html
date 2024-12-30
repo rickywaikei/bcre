@@ -5,7 +5,7 @@
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">{{ listing.title | title }}</h1>
-          <p class="lead"><i class="fas fa-map-marker"></i> {{ listing.get_district_display}}</p>
+          <p class="lead"><i class="fas fa-map-marker"></i> {{ listing.get_district_display }}</p>
         </div>
       </div>
     </div>
@@ -17,10 +17,10 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href={% url "index" %}>Home</a>
+            <a href="{% url 'index' %}">Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href={% url "listings" %}>Listings</a>
+            <a href="{% url 'listings' %}">Listings</a>
           </li>
           <li class="breadcrumb-item active">{{ listing.title }}</li>
         </ol>
@@ -31,7 +31,7 @@
   <!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
-      <a href={% url "listings" %} class="btn btn-light mb-4">Back To Listings</a>
+      <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
@@ -173,19 +173,13 @@
 
           <!-- Description -->
           <div class="row mb-5">
-            {% comment %} description {% endcomment %}
             <div class="col-md-12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Mollitia recusandae esse reiciendis officia omnis non rerum
-              dicta cupiditate nostrum molestias deserunt aut minus inventore
-              animi atque, consequuntur ad fugit. Possimus culpa blanditiis
-              repellendus ipsa similique ullam, natus error dolor harum.
+              {{ listing.description}}
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="card mb-3">
-            {% comment %} realtor {% endcomment %}
             <img
               class="card-img-top"
               src={{ listing.realtor.photo.url}}
