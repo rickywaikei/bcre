@@ -89,8 +89,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bcredb',
         'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost'
+        'PASSWORD': 'strong_p@ssw0rd!@#',
+        'PORT': '8543',
+        'HOST': 'erb4bcre.mooo.com',
+        'OPTIONS': {
+            'sslmode': 'require',  # Use 'verify-full' for stricter verification
+        },
     }
 }
 
@@ -153,6 +157,6 @@ MESSAGE_TAGS = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'ricky193chan@gmail.com'
+EMAIL_HOST_PASSWORD = 'P@ssW0rd98639230'
 EMAIL_USE_SSL = True
